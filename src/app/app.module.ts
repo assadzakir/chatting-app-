@@ -8,6 +8,7 @@ import { AngularFireModule } from 'angularfire2';
 import {MaterialModule} from "@angular/material"
 import {RouterModule} from "@angular/router";
 import {routes} from "./app.routing";
+import { LayoutModule } from 'ng2-flex-layout';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -33,6 +34,7 @@ import { ChatComponent } from './components/chat/chat.component';
     ChatComponent
   ],
   imports: [
+    LayoutModule,
     RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(firebaseConfig,firebaseAuthConfig),
     MaterialModule.forRoot(),

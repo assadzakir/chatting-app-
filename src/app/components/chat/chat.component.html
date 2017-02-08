@@ -1,3 +1,49 @@
-<p>
-  chat works!
-</p>
+
+<div layout="row">
+  <div flex="20">
+    <div style="background-color: mintcream;height: 93vh;display: inline-block;">
+    <md-list style="width: 100%;">
+      <div *ngFor="let userInfo of friendList">
+        <md-list-item class="friends-box" (click)="selectedUser(userInfo)" [ngClass]="{changeBg: userInfo.selectable}">
+          <!--<img md-list-avatar s alt="profile picture" height="60">-->
+          <h1 md-line><b>{{userInfo.fullName}} </b></h1>
+        </md-list-item>
+        <md-divider></md-divider>
+      </div>
+    </md-list>
+  </div>
+  </div>
+  <div flex="80">
+    <div style="height: 50vh;">
+      <div *ngIf="!selectUserToSendMsg"><h2></h2></div>
+      <div style="height: 400px;overflow-y: scroll;overflow-x: hidden;">
+        <md-list>
+          <div *ngFor="let msgObj of myFriendChat">
+
+            <div [ngClass]="{align_right: authUser.$key == msgObj.sentBy}">
+              <p md-line *ngIf="msgObj.message !=''"><b>{{msgObj.message}} </b></p>
+              <p md-line *ngIf="msgObj.fileUrl !=''">
+                <a href="{{msgObj.fileUrl}}" target="_blank">
+                  <!--<img src="/assets/file.png" height="100" width="70">-->
+                  <img src="{{msgObj.fileUrl}}" height="100" width="120">
+                </a>
+              </p>
+            </div>
+          </div>
+        </md-list>
+      </div>
+      <div class="send-msg-container" >
+        <textarea [(ngModel)]="userMsg" class="feedback-textarea"></textarea>
+        <button md-button md-raised-button color="warn" (click)="sendMsg()">Send</button>
+
+        <form ngNoForm style="display:inline-block;">
+          <input id="uploadFile" name="file" type="file">
+          <button (click)="uploadImage()" md-raised-button color="warn" type="button">Upload</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

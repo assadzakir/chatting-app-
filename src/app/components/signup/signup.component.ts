@@ -32,8 +32,6 @@ export class SignupComponent  {
       this.afRef.auth.createUser({email: this.userObj.email, password: this.userObj.password}).then(data=> {
         console.log(data.uid);
         this.afRef.database.object("/users/" + data.uid).set(this.userObj);
-        alert("Successfully user created ");
-
         //clear data fields
         this.userObj = {
           email: "",
